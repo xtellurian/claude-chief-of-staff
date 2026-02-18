@@ -71,31 +71,35 @@ mkdir -p "$CLAUDE_DIR/task-outputs"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Copy and customize CLAUDE.md
-echo -e "${GREEN}Customizing CLAUDE.md...${NC}"
+# Copy and customize CLAUDE.md (skip if already exists)
+if [ ! -f "$CLAUDE_DIR/CLAUDE.md" ]; then
+    echo -e "${GREEN}Customizing CLAUDE.md...${NC}"
 
-cp "$SCRIPT_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
+    cp "$SCRIPT_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
 
-# Replace placeholders
-sed -i.bak "s/{{YOUR_NAME}}/$USER_NAME/g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s/{{YOUR_FIRST_NAME}}/$FIRST_NAME/g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s/{{YOUR_ROLE}}/$USER_ROLE/g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s/{{YOUR_COMPANY}}/$USER_COMPANY/g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s/{{WORK_EMAIL}}/$WORK_EMAIL/g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s/{{PERSONAL_EMAIL}}/$PERSONAL_EMAIL/g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s|{{COMPANY_URL}}|$COMPANY_URL|g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s/{{CURRENCY}}/$CURRENCY/g" "$CLAUDE_DIR/CLAUDE.md"
-sed -i.bak "s|{{TIMEZONE}}|$TIMEZONE|g" "$CLAUDE_DIR/CLAUDE.md"
+    # Replace placeholders
+    sed -i.bak "s/{{YOUR_NAME}}/$USER_NAME/g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s/{{YOUR_FIRST_NAME}}/$FIRST_NAME/g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s/{{YOUR_ROLE}}/$USER_ROLE/g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s/{{YOUR_COMPANY}}/$USER_COMPANY/g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s/{{WORK_EMAIL}}/$WORK_EMAIL/g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s/{{PERSONAL_EMAIL}}/$PERSONAL_EMAIL/g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s|{{COMPANY_URL}}|$COMPANY_URL|g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s/{{CURRENCY}}/$CURRENCY/g" "$CLAUDE_DIR/CLAUDE.md"
+    sed -i.bak "s|{{TIMEZONE}}|$TIMEZONE|g" "$CLAUDE_DIR/CLAUDE.md"
 
-if [ -n "$DINNER_TIME" ]; then
-    sed -i.bak "s/{{DINNER_TIME}}/$DINNER_TIME/g" "$CLAUDE_DIR/CLAUDE.md"
+    if [ -n "$DINNER_TIME" ]; then
+        sed -i.bak "s/{{DINNER_TIME}}/$DINNER_TIME/g" "$CLAUDE_DIR/CLAUDE.md"
+    fi
+    if [ -n "$EARLIEST_MEETING" ]; then
+        sed -i.bak "s/{{EARLIEST_MEETING_TIME}}/$EARLIEST_MEETING/g" "$CLAUDE_DIR/CLAUDE.md"
+    fi
+
+    # Clean up sed backup files
+    rm -f "$CLAUDE_DIR/CLAUDE.md.bak"
+else
+    echo -e "  ${YELLOW}Skipped (already exists):${NC} $CLAUDE_DIR/CLAUDE.md"
 fi
-if [ -n "$EARLIEST_MEETING" ]; then
-    sed -i.bak "s/{{EARLIEST_MEETING_TIME}}/$EARLIEST_MEETING/g" "$CLAUDE_DIR/CLAUDE.md"
-fi
-
-# Clean up sed backup files
-rm -f "$CLAUDE_DIR/CLAUDE.md.bak"
 
 # Copy template files (don't overwrite existing)
 echo -e "${GREEN}Installing template files...${NC}"
