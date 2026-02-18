@@ -1,12 +1,14 @@
 # My AI Chief of Staff
 
-I'm [Mike Murchison](https://linkedin.com/in/mikemurchison), CEO of [Ada](https://ada.cx) — the agentic customer experience platform. Over the past few months, I've been building something on Claude Code that has fundamentally changed how I work: an AI chief of staff that connects to every tool I use, knows my priorities and relationships, and operates 24/7 in the background.
+This is a personal fork of [claude-chief-of-staff](https://github.com/mimurchison/claude-chief-of-staff), originally created by [Mike Murchison](https://linkedin.com/in/mikemurchison), CEO of [Ada](https://ada.cx). This fork is maintained by [@xtellurian](https://github.com/xtellurian) and may diverge from the upstream repo over time.
 
-A lot of people have been asking about the setup — at the Claude Code meetup, in conversations with other CEOs, and across our team at Ada where we've been building AI-native operations into how we run the company. So I'm open-sourcing it for you to try, adapt, and improve.
+The original README describes the system well:
+
+> Over the past few months, I've been building something on Claude Code that has fundamentally changed how I work: an AI chief of staff that connects to every tool I use, knows my priorities and relationships, and operates 24/7 in the background.
 
 This repo gives you the same foundation. Your context, your goals, your voice.
 
-Watch the walkthrough and demo [here](https://x.com/mimurchison/status/2022368529417224480)
+Watch the original walkthrough and demo [here](https://x.com/mimurchison/status/2022368529417224480)
 
 ---
 
@@ -40,7 +42,7 @@ Define your quarterly objectives. Every triage decision, scheduling recommendati
 
 ```bash
 # 1. Clone
-git clone https://github.com/mimurchison/claude-chief-of-staff.git
+git clone https://github.com/xtellurian/claude-chief-of-staff.git
 cd claude-chief-of-staff
 
 # 2. Install
@@ -53,6 +55,10 @@ claude
 ```
 
 First morning briefing in under 15 minutes from clone.
+
+### Installation Notes
+
+The installer copies template files into `~/.claude/`. It will not overwrite files that already exist — this includes `CLAUDE.md`. If you have already set up and customized your `~/.claude/CLAUDE.md`, re-running `install.sh` will leave it untouched.
 
 ---
 
@@ -155,21 +161,13 @@ A few beliefs this system is built on:
 
 ## Contributing
 
-This is early and evolving. If you build useful commands, improve the templates, or add MCP server guides — contributions are very welcome. I'd love to hear what you build with it.
-
-1. Fork the repo
-2. Create a feature branch
-3. Submit a pull request
-
-Or just open an issue with feedback.
+This is a personal fork. For general improvements to the system, consider contributing to the [upstream repo](https://github.com/mimurchison/claude-chief-of-staff). For issues specific to this fork, open an issue here.
 
 ---
 
-## Stay Connected
+## Credits
 
-- [@mimurchison](https://twitter.com/mimurchison) on Twitter/X
-- [Mike Murchison](https://linkedin.com/in/mikemurchison) on LinkedIn
-- [Ada](https://ada.cx) — the agentic customer experience platform
+Originally created by [Mike Murchison](https://linkedin.com/in/mikemurchison) ([@mimurchison](https://twitter.com/mimurchison)). Forked and maintained by [@xtellurian](https://github.com/xtellurian).
 
 ---
 
